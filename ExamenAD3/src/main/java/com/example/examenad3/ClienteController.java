@@ -14,7 +14,7 @@ public class ClienteController {
     private ClienteRepository clienteRepository;
 
     @PostMapping("insert")
-    public ResponseEntity<Cliente> save(@RequestBody Cliente cliente){
+    public ResponseEntity<Cliente>insert(@RequestBody Cliente cliente){
         Cliente nuevoCliente = cliente;
         if(nuevoCliente!=null){
             return new ResponseEntity<>(clienteRepository.save(cliente), HttpStatus.OK);
@@ -43,7 +43,7 @@ public class ClienteController {
 
     }
     @GetMapping("totalVentas")
-    public ResponseEntity<Long>totalVentas(){
+    public ResponseEntity<Long>getTotalVentas(){
         List<Cliente> clientes= clienteRepository.findAll();
         Long sumarVentas = 0L;
         if(!clientes.isEmpty()){
@@ -57,7 +57,7 @@ public class ClienteController {
 
     }
     @GetMapping("promedio")
-    public ResponseEntity<Double>promedio(){
+    public ResponseEntity<Double>getPromedio(){
         List<Cliente> clienteActivos = clienteRepository.getClienteByEstado("activo");
         Long sumarVentas=0L;
         if(!clienteActivos.isEmpty()){
